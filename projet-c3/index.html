@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>C3 Cavendish | Condos contemporains NDG | Développement Key Plus</title>
+  <title>C3 Cavendish | Condos contemporains NDG | Bunkorn Yun</title>
   <meta name="description" content="C3 Cavendish — condos contemporains au coeur de Notre-Dame-de-Grâce. Vue imprenable sur le Mont-Royal, 95 condos modernes, piscine sur le toit.">
   <link rel="canonical" href="https://bunkornyun.com/projet-c3/">
-  <meta property="og:title" content="C3 Cavendish | Développement Key Plus">
+  <meta property="og:title" content="C3 Cavendish | Bunkorn Yun">
   <meta property="og:description" content="Condos contemporains au coeur de NDG. Vue sur le Mont-Royal, piscine sur le toit, finitions modernes.">
   <meta property="og:url" content="https://bunkornyun.com/projet-c3/">
   <meta property="og:type" content="website">
@@ -14,107 +14,198 @@
   <meta property="og:image" content="https://bunkornyun.com/assets/img/c3/hero.jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            teal: { 950: '#0a1f1f', 900: '#0F766E', 800: '#115E59', 700: '#0F766E', 600: '#0D9488', 500: '#14B8A6' },
+            gold: { 500: '#C8A45C', 400: '#D4B76E', 300: '#E0CA80' },
+          },
+          fontFamily: {
+            display: ['Cinzel', 'serif'],
+            body: ['Josefin Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Josefin Sans', sans-serif; }
+    .font-display { font-family: 'Cinzel', serif; }
+    .mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+    .mobile-menu.open { max-height: 300px; }
+    .lightbox { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; cursor: pointer; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 4px; }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
 </head>
-<body>
+<body class="bg-teal-950 text-white antialiased">
 
-  <nav class="nav">
-    <a href="../" class="nav__logo">Développement <span>Key Plus</span></a>
-    <ul class="nav__links">
-      <li><a href="../#projets">Projets</a></li>
-      <li><a href="../#apropos">À propos</a></li>
-      <li><a href="../#contact">Contact</a></li>
-    </ul>
-    <button class="nav__toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-teal-950/90 backdrop-blur-md border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="../" class="font-display text-lg tracking-widest text-gold-500 hover:text-gold-300 transition-colors">BUNKORN YUN</a>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="../#projets" class="text-sm font-light tracking-wide text-white/70 hover:text-white transition-colors">Projets</a>
+          <a href="../#apropos" class="text-sm font-light tracking-wide text-white/70 hover:text-white transition-colors">À propos</a>
+          <a href="../#contact" class="text-sm font-light tracking-wide text-white/70 hover:text-white transition-colors">Contact</a>
+          <a href="tel:5147220088" class="text-sm font-semibold tracking-wide bg-gold-500 text-teal-950 px-5 py-2 hover:bg-gold-400 transition-colors">(514) 722-0088</a>
+        </div>
+        <button id="menu-toggle" class="md:hidden text-white/70 hover:text-white cursor-pointer" aria-label="Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+      <div id="mobile-menu" class="mobile-menu md:hidden">
+        <div class="py-4 space-y-3 border-t border-white/5">
+          <a href="../#projets" class="block text-sm font-light tracking-wide text-white/70">Projets</a>
+          <a href="../#apropos" class="block text-sm font-light tracking-wide text-white/70">À propos</a>
+          <a href="../#contact" class="block text-sm font-light tracking-wide text-white/70">Contact</a>
+        </div>
+      </div>
+    </div>
   </nav>
 
-  <section class="page-hero">
-    <img src="../assets/img/c3/hero.jpeg" alt="C3 Cavendish - immeuble de condos">
-    <div class="page-hero__content">
-      <h1 class="page-hero__title">C3 Cavendish</h1>
-      <p class="page-hero__sub">Condos contemporains au coeur de NDG</p>
+  <!-- HERO -->
+  <section class="relative h-[70vh] min-h-[400px] overflow-hidden">
+    <img src="../assets/img/c3/hero.jpeg" alt="C3 Cavendish — immeuble de condos" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-teal-950 via-teal-950/50 to-transparent"></div>
+    <div class="absolute inset-0 flex flex-col items-center justify-end pb-16 text-center px-4">
+      <p class="font-display text-gold-500 text-xs tracking-[0.3em] uppercase mb-2">Développement Key Plus</p>
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl text-white">C3 Cavendish</h1>
+      <p class="font-light text-lg text-white/70 mt-3 tracking-wide">Condos contemporains au coeur de NDG</p>
     </div>
   </section>
 
-  <section class="project-detail">
-    <div class="project-detail__intro">
-      <p>Situés au coeur de Notre-Dame-de-Grâce à l'intersection des rues Sherbrooke et Cavendish, les condos du Complexe C3 offrent une vue imprenable sur le Mont-Royal, l'Oratoire St-Joseph et la Montérégie.</p>
+  <!-- INTRO -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+      <p class="font-light text-lg sm:text-xl text-white/80 leading-relaxed text-center">Situés au coeur de Notre-Dame-de-Grâce à l'intersection des rues Sherbrooke et Cavendish, les condos du Complexe C3 offrent une vue imprenable sur le Mont-Royal, l'Oratoire St-Joseph et la Montérégie.</p>
     </div>
+  </section>
 
-    <div class="project-detail__grid">
-      <div class="project-detail__img">
-        <img src="../assets/img/c3/cavendish-full.jpg" alt="C3 Cavendish - vue de l'immeuble">
+  <!-- CONTENT BLOCKS -->
+  <section class="pb-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto space-y-20">
+      <div class="grid md:grid-cols-2 gap-8 lg:gap-16 items-center">
+        <div class="overflow-hidden">
+          <img src="../assets/img/c3/cavendish-full.jpg" alt="C3 Cavendish — vue de l'immeuble" class="w-full hover:scale-105 transition-transform duration-500" loading="lazy">
+        </div>
+        <div>
+          <h3 class="font-display text-2xl text-white mb-4">Un projet à votre mesure</h3>
+          <div class="space-y-4 font-light text-white/70 leading-relaxed">
+            <p>À titre de promoteur du projet C3, Développement Key Plus inc. est fier de présenter ses unités de condo allant de 500 à 1022 pieds carrés sur six étages, incluant des appartements mezzanine avec des penthouses sur deux niveaux comprenant des terrasses privées.</p>
+            <p>La première phase de construction consiste en la conversion d'un immeuble existant de six étages en 95 condos au design moderne et contemporain, avec fenestration abondante, l'accès à une salle commune, une salle d'exercice et une terrasse avec piscine sur le toit.</p>
+          </div>
+        </div>
       </div>
-      <div class="project-detail__text">
-        <h3>Un projet a votre mesure</h3>
-        <p>À titre de promoteur du projet C3, Développement Key Plus inc. est fier de présenter ses unités de condo allant de 500 à 1022 pieds carrés sur six étages, incluant des appartements mezzanine avec des penthouses sur deux niveaux comprenant des terrasses privées.</p>
-        <p>La première phase de construction consiste en la conversion d'un immeuble existant de six étages en 95 condos au design moderne et contemporain, avec fenestration abondante, l'accès à une salle commune, une salle d'exercice et une terrasse avec piscine sur le toit.</p>
-      </div>
-    </div>
-
-    <div class="project-detail__grid">
-      <div class="project-detail__text">
-        <h3>Des espaces de vie pour tous</h3>
-        <p>Offerts à un coût abordable, les condos du projet C3 offrent un design contemporain, une construction exemplaire dans un emplacement de premier choix donnant aux propriétaires un accès à une gamme complète de services en quelques minutes.</p>
-        <p>Situés à quelques pas du Village Monkland, des épiceries, garderies, banques, pharmacies et nombreux restaurants du quartier, les condos C3 sont de véritables espaces de vie urbaine pour les familles, les couples et les jeunes retraités.</p>
-      </div>
-      <div class="project-detail__img">
-        <img src="../assets/img/c3/salon.jpg" alt="C3 Cavendish - salon moderne">
-      </div>
-    </div>
-
-    <div class="section__header">
-      <h2>Caractéristiques</h2>
-    </div>
-    <div class="features">
-      <div class="feature"><p>Insonorisation supérieure</p></div>
-      <div class="feature"><p>Vastes balcons pour la majorité des condos</p></div>
-      <div class="feature"><p>Planchers de bois franc</p></div>
-      <div class="feature"><p>Comptoirs de quartz</p></div>
-      <div class="feature"><p>Fenêtres à faible émissivité</p></div>
-      <div class="feature"><p>Système de climatisation</p></div>
-      <div class="feature"><p>Espaces de rangement</p></div>
-      <div class="feature"><p>Stationnement intérieur</p></div>
-      <div class="feature"><p>Supports à vélo intérieurs</p></div>
-      <div class="feature"><p>Garantie des maisons neuves de 5 ans</p></div>
-      <div class="feature"><p>Salle commune et salle d'exercice</p></div>
-      <div class="feature"><p>Terrasse avec piscine sur le toit</p></div>
-    </div>
-
-    <div class="gallery">
-      <div class="section__header"><h2>Galerie</h2></div>
-      <div class="gallery__grid">
-        <div class="gallery__item"><img src="../assets/img/c3/hero.jpeg" alt="C3 Cavendish extérieur"></div>
-        <div class="gallery__item"><img src="../assets/img/c3/cavendish-full.jpg" alt="C3 Cavendish vue complète"></div>
-        <div class="gallery__item"><img src="../assets/img/c3/salon.jpg" alt="C3 Cavendish salon"></div>
-        <div class="gallery__item"><img src="../assets/img/c3/gallery-2.jpg" alt="C3 Cavendish galerie 2"></div>
-        <div class="gallery__item"><img src="../assets/img/c3/gallery-3.jpg" alt="C3 Cavendish galerie 3"></div>
-        <div class="gallery__item"><img src="../assets/img/c3/gallery-4.jpg" alt="C3 Cavendish galerie 4"></div>
+      <div class="grid md:grid-cols-2 gap-8 lg:gap-16 items-center">
+        <div class="md:order-2 overflow-hidden">
+          <img src="../assets/img/c3/salon.jpg" alt="C3 Cavendish — salon moderne" class="w-full hover:scale-105 transition-transform duration-500" loading="lazy">
+        </div>
+        <div class="md:order-1">
+          <h3 class="font-display text-2xl text-white mb-4">Des espaces de vie pour tous</h3>
+          <div class="space-y-4 font-light text-white/70 leading-relaxed">
+            <p>Offerts à un coût abordable, les condos du projet C3 offrent un design contemporain, une construction exemplaire dans un emplacement de premier choix donnant aux propriétaires un accès à une gamme complète de services en quelques minutes.</p>
+            <p>Situés à quelques pas du Village Monkland, des épiceries, garderies, banques, pharmacies et nombreux restaurants du quartier, les condos C3 sont de véritables espaces de vie urbaine pour les familles, les couples et les jeunes retraités.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="cta">
-    <h2>Un projet qui vous ressemble</h2>
-    <p>Contactez-nous pour planifier une visite ou obtenir plus d'information sur les condos C3 Cavendish.</p>
-    <a href="tel:5147220088" class="cta__btn">(514) 722-0088</a>
+  <!-- FEATURES -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-white/[0.02]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <p class="font-display text-gold-500 text-xs tracking-[0.3em] uppercase mb-3">Détails</p>
+        <h2 class="font-display text-3xl text-white">Caractéristiques</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div class="border border-white/5 p-6 hover:border-gold-500/30 transition-colors"><p class="font-light text-white/70">Insonorisation supérieure</p></div>
+        <div class="border border-white/5 p-6 hover:border-gold-500/30 transition-colors"><p class="font-light text-white/70">Vastes balcons pour la majorité des condos</p></div>
+        <div class="border border-white/5 p-6 hover:border-gold-500/30 transition-colors"><p class="font-light text-white/70">Planchers de bois franc</p></div>
+        <div class="border border-white/5 p-6 hover:border-gold-500/30 transition-colors"><p class="font-light text-white/70">Comptoirs de quartz</p></div>
+        <div class="border border-white/5 p-6 hover:border-gold-500/30 transition-colors"><p class="font-light text-white/70">Fenêtres à faible émissivité</p></div>
+        <div class="border border-white/5 p-6 hover:border-gold-500/30 transition-colors"><p class="font-light text-white/70">Système de climatisation</p></div>
+        <div class="border border-white/5 p-6 hover:border-gold-500/30 transition-colors"><p class="font-light text-white/70">Espaces de rangement</p></div>
+        <div class="border border-white/5 p-6 hover:border-gold-500/30 transition-colors"><p class="font-light text-white/70">Stationnement intérieur</p></div>
+        <div class="border border-white/5 p-6 hover:border-gold-500/30 transition-colors"><p class="font-light text-white/70">Supports à vélo intérieurs</p></div>
+        <div class="border border-white/5 p-6 hover:border-gold-500/30 transition-colors"><p class="font-light text-white/70">Garantie des maisons neuves de 5 ans</p></div>
+        <div class="border border-white/5 p-6 hover:border-gold-500/30 transition-colors"><p class="font-light text-white/70">Salle commune et salle d'exercice</p></div>
+        <div class="border border-white/5 p-6 hover:border-gold-500/30 transition-colors"><p class="font-light text-white/70">Terrasse avec piscine sur le toit</p></div>
+      </div>
+    </div>
   </section>
 
-  <footer class="footer">
-    <div class="footer__inner">
-      <div class="footer__copy">
-        <p>2026 Développement Key Plus Inc. Tous droits réservés</p>
-        <p>2672 rue Jarry est, Montréal, QC H1Z 2C7 | (514) 722-0088</p>
+  <!-- GALLERY -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <p class="font-display text-gold-500 text-xs tracking-[0.3em] uppercase mb-3">Visuels</p>
+        <h2 class="font-display text-3xl text-white">Galerie</h2>
       </div>
-      <div class="footer__links">
-        <a href="../">Accueil</a>
-        <a href="../#projets">Projets</a>
-        <a href="../#contact">Contact</a>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+        <img src="../assets/img/c3/hero.jpeg" alt="C3 Cavendish extérieur" class="gallery-item w-full cursor-pointer hover:opacity-80 transition-opacity" loading="lazy">
+        <img src="../assets/img/c3/cavendish-full.jpg" alt="C3 Cavendish vue complète" class="gallery-item w-full cursor-pointer hover:opacity-80 transition-opacity" loading="lazy">
+        <img src="../assets/img/c3/salon.jpg" alt="C3 Cavendish salon" class="gallery-item w-full cursor-pointer hover:opacity-80 transition-opacity" loading="lazy">
+        <img src="../assets/img/c3/gallery-2.jpg" alt="C3 Cavendish galerie" class="gallery-item w-full cursor-pointer hover:opacity-80 transition-opacity" loading="lazy">
+        <img src="../assets/img/c3/gallery-3.jpg" alt="C3 Cavendish galerie" class="gallery-item w-full cursor-pointer hover:opacity-80 transition-opacity" loading="lazy">
+        <img src="../assets/img/c3/gallery-4.jpg" alt="C3 Cavendish galerie" class="gallery-item w-full cursor-pointer hover:opacity-80 transition-opacity" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-white/[0.02]">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="font-display text-gold-500 text-xs tracking-[0.3em] uppercase mb-3">Contact</p>
+      <h2 class="font-display text-3xl text-white mb-4">Un projet qui vous ressemble</h2>
+      <p class="font-light text-white/60 mb-8">Contactez-nous pour planifier une visite ou obtenir plus d'information sur les condos C3 Cavendish.</p>
+      <a href="tel:5147220088" class="inline-block font-display text-sm tracking-widest bg-gold-500 text-teal-950 px-10 py-4 hover:bg-gold-400 transition-colors">(514) 722-0088</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="text-center md:text-left">
+        <p class="font-display text-xs tracking-widest text-white/30">&copy; 2026 Développement Key Plus Inc. — Tous droits réservés</p>
+        <p class="font-light text-xs text-white/20 mt-1">2672 rue Jarry est, Montréal, QC H1Z 2C7 | (514) 722-0088</p>
+      </div>
+      <div class="flex gap-8">
+        <a href="../" class="font-light text-xs text-white/30 hover:text-white/60 transition-colors">Accueil</a>
+        <a href="../#projets" class="font-light text-xs text-white/30 hover:text-white/60 transition-colors">Projets</a>
+        <a href="../#contact" class="font-light text-xs text-white/30 hover:text-white/60 transition-colors">Contact</a>
       </div>
     </div>
   </footer>
 
-  <script src="../assets/js/main.js"></script>
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-label="Image agrandie">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    document.querySelectorAll('.gallery-item').forEach(img => {
+      img.addEventListener('click', () => {
+        document.getElementById('lightbox-img').src = img.src;
+        document.getElementById('lightbox-img').alt = img.alt;
+        document.getElementById('lightbox').classList.add('open');
+      });
+    });
+    document.getElementById('lightbox').addEventListener('click', (e) => { if (e.target === e.currentTarget) e.currentTarget.classList.remove('open'); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open'); });
+  </script>
 </body>
 </html>

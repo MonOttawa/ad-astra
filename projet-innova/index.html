@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Projet Innova | Développement Key Plus Inc.</title>
+  <title>Projet Innova | Bunkorn Yun — Développement Key Plus</title>
   <meta name="description" content="Projet Innova — 250 condos spacieux dans le quartier Ahuntsic. De grands espaces de vie à un coût abordable. Conversion d'un immeuble commercial en complexe résidentiel moderne.">
   <link rel="canonical" href="https://bunkornyun.com/projet-innova/">
-  <meta property="og:title" content="Projet Innova | Développement Key Plus Inc.">
+  <meta property="og:title" content="Projet Innova | Bunkorn Yun">
   <meta property="og:description" content="250 condos spacieux dans le quartier Ahuntsic. De grands espaces de vie à un coût abordable.">
   <meta property="og:url" content="https://bunkornyun.com/projet-innova/">
   <meta property="og:type" content="website">
@@ -14,107 +14,206 @@
   <meta property="og:image" content="https://bunkornyun.com/assets/img/innova/hero.jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            teal: { 950: '#0a1f1f', 900: '#0F766E', 800: '#115E59', 700: '#0F766E', 600: '#0D9488', 500: '#14B8A6' },
+            gold: { 500: '#C8A45C', 400: '#D4B76E', 300: '#E0CA80' },
+          },
+          fontFamily: {
+            display: ['Cinzel', 'serif'],
+            body: ['Josefin Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Josefin Sans', sans-serif; }
+    .font-display { font-family: 'Cinzel', serif; }
+    .mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+    .mobile-menu.open { max-height: 300px; }
+    .lightbox { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; cursor: pointer; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 4px; }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
 </head>
-<body>
+<body class="bg-teal-950 text-white antialiased">
 
   <!-- NAV -->
-  <nav class="nav">
-    <a href="../" class="nav__logo">Développement <span>Key Plus</span></a>
-    <ul class="nav__links">
-      <li><a href="../#projets">Projets</a></li>
-      <li><a href="../#apropos">À propos</a></li>
-      <li><a href="../#contact">Contact</a></li>
-    </ul>
-    <button class="nav__toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-teal-950/90 backdrop-blur-md border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="../" class="font-display text-lg tracking-widest text-gold-500 hover:text-gold-300 transition-colors">BUNKORN YUN</a>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="../#projets" class="text-sm font-light tracking-wide text-white/70 hover:text-white transition-colors">Projets</a>
+          <a href="../#apropos" class="text-sm font-light tracking-wide text-white/70 hover:text-white transition-colors">À propos</a>
+          <a href="../#contact" class="text-sm font-light tracking-wide text-white/70 hover:text-white transition-colors">Contact</a>
+          <a href="tel:5147220088" class="text-sm font-semibold tracking-wide bg-gold-500 text-teal-950 px-5 py-2 hover:bg-gold-400 transition-colors">(514) 722-0088</a>
+        </div>
+        <button id="menu-toggle" class="md:hidden text-white/70 hover:text-white cursor-pointer" aria-label="Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+      <div id="mobile-menu" class="mobile-menu md:hidden">
+        <div class="py-4 space-y-3 border-t border-white/5">
+          <a href="../#projets" class="block text-sm font-light tracking-wide text-white/70">Projets</a>
+          <a href="../#apropos" class="block text-sm font-light tracking-wide text-white/70">À propos</a>
+          <a href="../#contact" class="block text-sm font-light tracking-wide text-white/70">Contact</a>
+        </div>
+      </div>
+    </div>
   </nav>
 
   <!-- HERO -->
-  <section class="page-hero">
-    <img src="../assets/img/innova/hero.jpeg" alt="Projet Innova — extérieur de l'immeuble">
-    <div class="page-hero__content">
-      <h1 class="page-hero__title">Projet Innova</h1>
-      <p class="page-hero__sub">De grands espaces à un coût abordable</p>
+  <section class="relative h-[70vh] min-h-[400px] overflow-hidden">
+    <img src="../assets/img/innova/hero.jpeg" alt="Projet Innova — extérieur de l'immeuble" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-teal-950 via-teal-950/50 to-transparent"></div>
+    <div class="absolute inset-0 flex flex-col items-center justify-end pb-16 text-center px-4">
+      <p class="font-display text-gold-500 text-xs tracking-[0.3em] uppercase mb-2">Développement Key Plus</p>
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl text-white">Projet Innova</h1>
+      <p class="font-light text-lg text-white/70 mt-3 tracking-wide">De grands espaces à un coût abordable</p>
     </div>
   </section>
 
   <!-- INTRO -->
-  <section class="project-detail">
-    <div class="project-detail__intro">
-      <p>De plus en plus, les condos rapetissent pour maintenir un prix raisonnable. Le projet Innova tire son nom de la volonté d'offrir des espaces de vie suffisamment grands pour accueillir une jeune famille et cela, à un coût intéressant.</p>
+  <section class="py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+      <p class="font-light text-lg sm:text-xl text-white/80 leading-relaxed text-center">De plus en plus, les condos rapetissent pour maintenir un prix raisonnable. Le projet Innova tire son nom de la volonté d'offrir des espaces de vie suffisamment grands pour accueillir une jeune famille et cela, à un coût intéressant.</p>
     </div>
+  </section>
 
-    <div class="project-detail__grid">
-      <div class="project-detail__img">
-        <img src="../assets/img/innova/interieur.jpg" alt="Innova — intérieur moderne avec planchers de bois franc">
+  <!-- CONTENT BLOCKS -->
+  <section class="pb-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto space-y-20">
+      <!-- Block 1 -->
+      <div class="grid md:grid-cols-2 gap-8 lg:gap-16 items-center">
+        <div class="overflow-hidden">
+          <img src="../assets/img/innova/interieur.jpg" alt="Innova — intérieur moderne avec planchers de bois franc" class="w-full hover:scale-105 transition-transform duration-500" loading="lazy">
+        </div>
+        <div>
+          <h3 class="font-display text-2xl text-white mb-4">L'essence du passé, tournée vers l'avenir</h3>
+          <div class="space-y-4 font-light text-white/70 leading-relaxed">
+            <p>Innova est né de la conversion d'un immeuble commercial du quartier Ahuntsic qui ne retiendra de son passé que sa structure de béton — permettant une solidité et une insonorisation remarquables.</p>
+            <p>En transformant un immeuble industriel en un complexe résidentiel, les promoteurs du projet Innova vont plus loin que revitaliser un quartier : ils permettent, grâce à ce changement de vocation, de faire renaître un édifice afin de véritablement répondre aux besoins de l'arrondissement et de ses citoyens.</p>
+          </div>
+        </div>
       </div>
-      <div class="project-detail__text">
-        <h3>L'essence du passé, tournée vers l'avenir</h3>
-        <p>Innova est né de la conversion d'un immeuble commercial du quartier Ahuntsic qui ne retiendra de son passé que sa structure de béton — permettant une solidité et une insonorisation remarquables.</p>
-        <p>En transformant un immeuble industriel en un complexe résidentiel, les promoteurs du projet Innova vont plus loin que revitaliser un quartier : ils permettent, grâce à ce changement de vocation, de faire renaître un édifice afin de véritablement répondre aux besoins de l'arrondissement et de ses citoyens.</p>
+      <!-- Block 2 -->
+      <div class="grid md:grid-cols-2 gap-8 lg:gap-16 items-center">
+        <div class="md:order-2 overflow-hidden">
+          <img src="../assets/img/innova/salon.jpg" alt="Innova — salon spacieux et lumineux" class="w-full hover:scale-105 transition-transform duration-500" loading="lazy">
+        </div>
+        <div class="md:order-1">
+          <h3 class="font-display text-2xl text-white mb-4">Des intérieurs chaleureux et accueillants</h3>
+          <div class="space-y-4 font-light text-white/70 leading-relaxed">
+            <p>La chaleur des planchers de bois franc d'érable ou de chêne, l'aspect pratique des comptoirs en quartz, le design luxueux d'un meuble-lavabo suspendu ainsi qu'une douche vitrée en font un espace de vie à la fois élégant et fonctionnel.</p>
+            <p>Le projet Innova propose 250 condos résidentiels répartis sur deux immeubles. La première phase regroupe 127 unités sur cinq étages, allant d'une à trois chambres à coucher jusqu'aux appartements-terrasses.</p>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="project-detail__grid">
-      <div class="project-detail__text">
-        <h3>Des intérieurs chaleureux et accueillants</h3>
-        <p>La chaleur des planchers de bois franc d'érable ou de chêne, l'aspect pratique des comptoirs en quartz, le design luxueux d'un meuble-lavabo suspendu ainsi qu'une douche vitrée en font un espace de vie à la fois élégant et fonctionnel.</p>
-        <p>Le projet Innova propose 250 condos résidentiels répartis sur deux immeubles. La première phase regroupe 127 unités sur cinq étages, allant d'une à trois chambres à coucher jusqu'aux appartements-terrasses.</p>
+  <!-- FEATURES -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-white/[0.02]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <p class="font-display text-gold-500 text-xs tracking-[0.3em] uppercase mb-3">Détails</p>
+        <h2 class="font-display text-3xl text-white">Caractéristiques</h2>
       </div>
-      <div class="project-detail__img">
-        <img src="../assets/img/innova/salon.jpg" alt="Innova — salon spacieux et lumineux">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="border border-white/5 p-6 hover:border-gold-500/30 transition-colors">
+          <p class="font-light text-white/70">Structure de béton — insonorisation supérieure</p>
+        </div>
+        <div class="border border-white/5 p-6 hover:border-gold-500/30 transition-colors">
+          <p class="font-light text-white/70">Planchers de bois franc d'érable ou de chêne</p>
+        </div>
+        <div class="border border-white/5 p-6 hover:border-gold-500/30 transition-colors">
+          <p class="font-light text-white/70">Comptoirs en quartz</p>
+        </div>
+        <div class="border border-white/5 p-6 hover:border-gold-500/30 transition-colors">
+          <p class="font-light text-white/70">Unités de 1 à 3 chambres + appartements-terrasses</p>
+        </div>
+        <div class="border border-white/5 p-6 hover:border-gold-500/30 transition-colors">
+          <p class="font-light text-white/70">250 condos sur deux immeubles</p>
+        </div>
+        <div class="border border-white/5 p-6 hover:border-gold-500/30 transition-colors">
+          <p class="font-light text-white/70">Quartier Ahuntsic — 9675 avenue Papineau</p>
+        </div>
       </div>
     </div>
+  </section>
 
-    <!-- FEATURES -->
-    <div class="section__header">
-      <h2>Caractéristiques</h2>
-    </div>
-    <div class="features">
-      <div class="feature"><p>Structure de béton — insonorisation supérieure</p></div>
-      <div class="feature"><p>Planchers de bois franc d'érable ou de chêne</p></div>
-      <div class="feature"><p>Comptoirs en quartz</p></div>
-      <div class="feature"><p>Unités de 1 à 3 chambres + appartements-terrasses</p></div>
-      <div class="feature"><p>250 condos sur deux immeubles</p></div>
-      <div class="feature"><p>Quartier Ahuntsic — 9675 avenue Papineau</p></div>
-    </div>
-
-    <!-- GALLERY -->
-    <div class="gallery">
-      <div class="section__header"><h2>Galerie</h2></div>
-      <div class="gallery__grid">
-        <div class="gallery__item"><img src="../assets/img/innova/hero.jpeg" alt="Extérieur Innova"></div>
-        <div class="gallery__item"><img src="../assets/img/innova/interieur.jpg" alt="Intérieur Innova"></div>
-        <div class="gallery__item"><img src="../assets/img/innova/salon.jpg" alt="Salon Innova"></div>
-        <div class="gallery__item"><img src="../assets/img/innova/banner.jpeg" alt="Bannière projet Innova"></div>
-        <div class="gallery__item"><img src="../assets/img/innova/config-design.jpg" alt="Configuration design Innova"></div>
+  <!-- GALLERY -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <p class="font-display text-gold-500 text-xs tracking-[0.3em] uppercase mb-3">Visuels</p>
+        <h2 class="font-display text-3xl text-white">Galerie</h2>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+        <img src="../assets/img/innova/hero.jpeg" alt="Extérieur Innova" class="gallery-item w-full cursor-pointer hover:opacity-80 transition-opacity" loading="lazy">
+        <img src="../assets/img/innova/interieur.jpg" alt="Intérieur Innova" class="gallery-item w-full cursor-pointer hover:opacity-80 transition-opacity" loading="lazy">
+        <img src="../assets/img/innova/salon.jpg" alt="Salon Innova" class="gallery-item w-full cursor-pointer hover:opacity-80 transition-opacity" loading="lazy">
+        <img src="../assets/img/innova/banner.jpeg" alt="Bannière projet Innova" class="gallery-item w-full cursor-pointer hover:opacity-80 transition-opacity" loading="lazy">
+        <img src="../assets/img/innova/config-design.jpg" alt="Configuration design Innova" class="gallery-item w-full cursor-pointer hover:opacity-80 transition-opacity col-span-2 md:col-span-1" loading="lazy">
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="cta">
-    <h2>Visitez l'appartement-témoin</h2>
-    <p>9675 avenue Papineau, suite 150. Lun-jeu 13h-19h, sam-dim 13h-17h.</p>
-    <a href="tel:5143813331" class="cta__btn">(514) 381-3331</a>
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-white/[0.02]">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="font-display text-gold-500 text-xs tracking-[0.3em] uppercase mb-3">Visitez</p>
+      <h2 class="font-display text-3xl text-white mb-4">Visitez l'appartement-témoin</h2>
+      <p class="font-light text-white/60 mb-2">9675 avenue Papineau, suite 150</p>
+      <p class="font-light text-white/40 text-sm mb-8">Lun-jeu 13h-19h | Sam-dim 13h-17h</p>
+      <a href="tel:5143813331" class="inline-block font-display text-sm tracking-widest bg-gold-500 text-teal-950 px-10 py-4 hover:bg-gold-400 transition-colors">(514) 381-3331</a>
+    </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer__inner">
-      <div class="footer__copy">
-        <p>© 2026 Développement Key Plus Inc. — Tous droits réservés</p>
-        <p>2672 rue Jarry est, Montréal, QC H1Z 2C7 | (514) 722-0088</p>
+  <footer class="border-t border-white/5 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="text-center md:text-left">
+        <p class="font-display text-xs tracking-widest text-white/30">&copy; 2026 Développement Key Plus Inc. — Tous droits réservés</p>
+        <p class="font-light text-xs text-white/20 mt-1">2672 rue Jarry est, Montréal, QC H1Z 2C7 | (514) 722-0088</p>
       </div>
-      <div class="footer__links">
-        <a href="../">Accueil</a>
-        <a href="../#projets">Projets</a>
-        <a href="../#contact">Contact</a>
+      <div class="flex gap-8">
+        <a href="../" class="font-light text-xs text-white/30 hover:text-white/60 transition-colors">Accueil</a>
+        <a href="../#projets" class="font-light text-xs text-white/30 hover:text-white/60 transition-colors">Projets</a>
+        <a href="../#contact" class="font-light text-xs text-white/30 hover:text-white/60 transition-colors">Contact</a>
       </div>
     </div>
   </footer>
 
-  <script src="../assets/js/main.js"></script>
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-label="Image agrandie">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    document.querySelectorAll('.gallery-item').forEach(img => {
+      img.addEventListener('click', () => {
+        document.getElementById('lightbox-img').src = img.src;
+        document.getElementById('lightbox-img').alt = img.alt;
+        document.getElementById('lightbox').classList.add('open');
+      });
+    });
+    document.getElementById('lightbox').addEventListener('click', (e) => { if (e.target === e.currentTarget) e.currentTarget.classList.remove('open'); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open'); });
+  </script>
 </body>
 </html>

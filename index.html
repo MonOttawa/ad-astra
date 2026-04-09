@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Développement Key Plus Inc. | Promoteur immobilier Montréal</title>
-  <meta name="description" content="Développement Key Plus Inc. — promoteur immobilier à Montréal. Projets résidentiels de qualité : condos Innova, C3 Cavendish, Place Dufresne.">
+  <title>Bunkorn Yun | Promoteur immobilier Montréal</title>
+  <meta name="description" content="Bunkorn Yun — promoteur immobilier à Montréal. Développement Key Plus Inc. Projets résidentiels de qualité : condos Innova, C3 Cavendish, Place Dufresne.">
   <link rel="canonical" href="https://bunkornyun.com/">
-  <meta property="og:title" content="Développement Key Plus Inc.">
+  <meta property="og:title" content="Bunkorn Yun | Promoteur immobilier Montréal">
   <meta property="og:description" content="Promoteur immobilier à Montréal. Projets résidentiels de qualité dans la grande région métropolitaine.">
   <meta property="og:url" content="https://bunkornyun.com/">
   <meta property="og:type" content="website">
@@ -14,8 +14,48 @@
   <meta property="og:image" content="https://bunkornyun.com/assets/img/innova/hero.jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            teal: { 950: '#0a1f1f', 900: '#0F766E', 800: '#115E59', 700: '#0F766E', 600: '#0D9488', 500: '#14B8A6' },
+            gold: { 500: '#C8A45C', 400: '#D4B76E', 300: '#E0CA80' },
+          },
+          fontFamily: {
+            display: ['Cinzel', 'serif'],
+            body: ['Josefin Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Josefin Sans', sans-serif; }
+    .font-display { font-family: 'Cinzel', serif; }
+
+    /* Hero slideshow */
+    .hero-slide { opacity: 0; transition: opacity 1.2s ease-in-out; position: absolute; inset: 0; }
+    .hero-slide.active { opacity: 1; }
+    .hero-slide img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Gallery lightbox */
+    .lightbox { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; cursor: pointer; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 4px; }
+
+    /* Mobile menu */
+    .mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+    .mobile-menu.open { max-height: 300px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-slide { transition: none; }
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -35,129 +75,222 @@
   }
   </script>
 </head>
-<body>
+<body class="bg-teal-950 text-white antialiased">
 
   <!-- NAV -->
-  <nav class="nav">
-    <a href="/" class="nav__logo">Développement <span>Key Plus</span></a>
-    <ul class="nav__links">
-      <li><a href="#projets">Projets</a></li>
-      <li><a href="#apropos">À propos</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="nav__toggle" aria-label="Menu"><span></span><span></span><span></span></button>
-  </nav>
-
-  <!-- HERO SLIDESHOW -->
-  <section class="hero">
-    <div class="hero__slides">
-      <div class="hero__slide active">
-        <img src="assets/img/place-dufresne/hero.jpeg" alt="Place Dufresne — condos locatifs à Montréal">
-        <div class="hero__content">
-          <p class="hero__subtitle">Nouveau projet</p>
-          <h1 class="hero__title">Place Dufresne</h1>
-          <a href="projet-place-dufresne/" class="hero__btn">Découvrir</a>
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-teal-950/90 backdrop-blur-md border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="/" class="font-display text-lg tracking-widest text-gold-500 hover:text-gold-300 transition-colors">BUNKORN YUN</a>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#projets" class="text-sm font-light tracking-wide text-white/70 hover:text-white transition-colors">Projets</a>
+          <a href="#apropos" class="text-sm font-light tracking-wide text-white/70 hover:text-white transition-colors">À propos</a>
+          <a href="#contact" class="text-sm font-light tracking-wide text-white/70 hover:text-white transition-colors">Contact</a>
+          <a href="tel:5147220088" class="text-sm font-semibold tracking-wide bg-gold-500 text-teal-950 px-5 py-2 hover:bg-gold-400 transition-colors">(514) 722-0088</a>
         </div>
+        <button id="menu-toggle" class="md:hidden text-white/70 hover:text-white cursor-pointer" aria-label="Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
       </div>
-      <div class="hero__slide">
-        <img src="assets/img/c3/hero.jpeg" alt="C3 Cavendish — condos contemporains à NDG">
-        <div class="hero__content">
-          <p class="hero__subtitle">Condos contemporains</p>
-          <h1 class="hero__title">C3 Cavendish</h1>
-          <a href="projet-c3/" class="hero__btn">Découvrir</a>
-        </div>
-      </div>
-      <div class="hero__slide">
-        <img src="assets/img/innova/hero.jpeg" alt="Innova — condos familiaux à Ahuntsic">
-        <div class="hero__content">
-          <p class="hero__subtitle">Espaces généreux</p>
-          <h1 class="hero__title">Projet Innova</h1>
-          <a href="projet-innova/" class="hero__btn">Découvrir</a>
+      <div id="mobile-menu" class="mobile-menu md:hidden">
+        <div class="py-4 space-y-3 border-t border-white/5">
+          <a href="#projets" class="block text-sm font-light tracking-wide text-white/70 hover:text-white transition-colors">Projets</a>
+          <a href="#apropos" class="block text-sm font-light tracking-wide text-white/70 hover:text-white transition-colors">À propos</a>
+          <a href="#contact" class="block text-sm font-light tracking-wide text-white/70 hover:text-white transition-colors">Contact</a>
+          <a href="tel:5147220088" class="inline-block text-sm font-semibold tracking-wide bg-gold-500 text-teal-950 px-5 py-2 hover:bg-gold-400 transition-colors">(514) 722-0088</a>
         </div>
       </div>
     </div>
-    <div class="hero__nav">
-      <button class="hero__dot active" aria-label="Slide 1"></button>
-      <button class="hero__dot" aria-label="Slide 2"></button>
-      <button class="hero__dot" aria-label="Slide 3"></button>
+  </nav>
+
+  <!-- HERO SLIDESHOW -->
+  <section class="relative h-screen overflow-hidden">
+    <div class="absolute inset-0">
+      <div class="hero-slide active">
+        <img src="assets/img/innova/hero.jpeg" alt="Projet Innova — condos familiaux à Ahuntsic">
+        <div class="absolute inset-0 bg-gradient-to-t from-teal-950 via-teal-950/40 to-transparent"></div>
+      </div>
+      <div class="hero-slide">
+        <img src="assets/img/c3/hero.jpeg" alt="C3 Cavendish — condos contemporains à NDG">
+        <div class="absolute inset-0 bg-gradient-to-t from-teal-950 via-teal-950/40 to-transparent"></div>
+      </div>
+      <div class="hero-slide">
+        <img src="assets/img/place-dufresne/hero.jpeg" alt="Place Dufresne — condos locatifs à Montréal">
+        <div class="absolute inset-0 bg-gradient-to-t from-teal-950 via-teal-950/40 to-transparent"></div>
+      </div>
+    </div>
+    <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+      <p class="font-display text-gold-500 text-sm tracking-[0.3em] uppercase mb-4">Développement Key Plus Inc.</p>
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-tight mb-6">
+        Bunkorn Yun
+      </h1>
+      <p class="font-light text-lg sm:text-xl text-white/80 max-w-2xl mb-10 tracking-wide">
+        Promoteur immobilier montréalais — des projets résidentiels de qualité pour les communautés d'aujourd'hui
+      </p>
+      <div class="flex gap-4">
+        <a href="#projets" class="font-display text-sm tracking-widest bg-gold-500 text-teal-950 px-8 py-3 hover:bg-gold-400 transition-colors">Nos projets</a>
+        <a href="#contact" class="font-display text-sm tracking-widest border border-white/30 text-white px-8 py-3 hover:bg-white/10 transition-colors">Contact</a>
+      </div>
+    </div>
+    <!-- Slide indicators -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex gap-3">
+      <button class="hero-dot w-2 h-2 rounded-full bg-white/40 cursor-pointer transition-colors active" aria-label="Slide 1"></button>
+      <button class="hero-dot w-2 h-2 rounded-full bg-white/40 cursor-pointer transition-colors" aria-label="Slide 2"></button>
+      <button class="hero-dot w-2 h-2 rounded-full bg-white/40 cursor-pointer transition-colors" aria-label="Slide 3"></button>
+    </div>
+    <!-- Scroll hint -->
+    <div class="absolute bottom-8 right-8 z-10 hidden md:block">
+      <a href="#projets" class="text-white/30 hover:text-white/60 transition-colors">
+        <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+      </a>
     </div>
   </section>
 
   <!-- PROJECTS -->
-  <section class="section" id="projets">
-    <div class="section__header">
-      <h2>Nos projets</h2>
-      <p>Des projets immobiliers pensés pour les communautés et le mieux-être des résidants.</p>
-    </div>
-    <div class="projects__grid">
-      <a href="projet-place-dufresne/" class="card">
-        <div class="card__img"><img src="assets/img/place-dufresne/hero.jpeg" alt="Place Dufresne"></div>
-        <div class="card__body">
-          <span class="card__tag">Condos locatifs</span>
-          <h3 class="card__title">Place Dufresne</h3>
-          <p class="card__text">Condos locatifs modernes à quelques minutes du métro Frontenac et du centre-ville.</p>
-          <span class="card__link">En savoir plus →</span>
-        </div>
-      </a>
-      <a href="projet-c3/" class="card">
-        <div class="card__img"><img src="assets/img/c3/hero.jpeg" alt="C3 Cavendish"></div>
-        <div class="card__body">
-          <span class="card__tag">Condos neufs</span>
-          <h3 class="card__title">C3 Cavendish</h3>
-          <p class="card__text">Condos contemporains au coeur de NDG, vue imprenable sur le Mont-Royal et l'Oratoire St-Joseph.</p>
-          <span class="card__link">En savoir plus →</span>
-        </div>
-      </a>
-      <a href="projet-innova/" class="card">
-        <div class="card__img"><img src="assets/img/innova/hero.jpeg" alt="Projet Innova"></div>
-        <div class="card__body">
-          <span class="card__tag">Condos résidentiels</span>
-          <h3 class="card__title">Projet Innova</h3>
-          <p class="card__text">250 condos spacieux dans un immeuble converti du quartier Ahuntsic — de grands espaces à un coût abordable.</p>
-          <span class="card__link">En savoir plus →</span>
-        </div>
-      </a>
+  <section id="projets" class="py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="font-display text-gold-500 text-xs tracking-[0.3em] uppercase mb-3">Portfolio</p>
+        <h2 class="font-display text-3xl sm:text-4xl text-white mb-4">Nos projets</h2>
+        <p class="font-light text-white/60 max-w-2xl mx-auto">Des projets immobiliers pensés pour les communautés et le mieux-être des résidants de la grande région métropolitaine de Montréal.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <!-- Place Dufresne -->
+        <a href="projet-place-dufresne/" class="group bg-white/[0.03] border border-white/5 overflow-hidden hover:border-gold-500/30 hover:shadow-2xl transition-all duration-300">
+          <div class="relative overflow-hidden aspect-[4/3]">
+            <img src="assets/img/place-dufresne/hero.jpeg" alt="Place Dufresne" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            <div class="absolute top-4 left-4">
+              <span class="font-display text-[10px] tracking-widest uppercase bg-gold-500 text-teal-950 px-3 py-1">Locatifs</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-display text-xl text-white mb-2 group-hover:text-gold-500 transition-colors">Place Dufresne</h3>
+            <p class="font-light text-sm text-white/50 leading-relaxed mb-4">Condos locatifs modernes à quelques minutes du métro Frontenac et du centre-ville.</p>
+            <span class="font-display text-xs tracking-widest text-gold-500 group-hover:text-gold-300 transition-colors">Découvrir →</span>
+          </div>
+        </a>
+        <!-- C3 Cavendish -->
+        <a href="projet-c3/" class="group bg-white/[0.03] border border-white/5 overflow-hidden hover:border-gold-500/30 hover:shadow-2xl transition-all duration-300">
+          <div class="relative overflow-hidden aspect-[4/3]">
+            <img src="assets/img/c3/hero.jpeg" alt="C3 Cavendish" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            <div class="absolute top-4 left-4">
+              <span class="font-display text-[10px] tracking-widest uppercase bg-gold-500 text-teal-950 px-3 py-1">Condos neufs</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-display text-xl text-white mb-2 group-hover:text-gold-500 transition-colors">C3 Cavendish</h3>
+            <p class="font-light text-sm text-white/50 leading-relaxed mb-4">Condos contemporains au coeur de NDG, vue imprenable sur le Mont-Royal et l'Oratoire St-Joseph.</p>
+            <span class="font-display text-xs tracking-widest text-gold-500 group-hover:text-gold-300 transition-colors">Découvrir →</span>
+          </div>
+        </a>
+        <!-- Innova -->
+        <a href="projet-innova/" class="group bg-white/[0.03] border border-white/5 overflow-hidden hover:border-gold-500/30 hover:shadow-2xl transition-all duration-300">
+          <div class="relative overflow-hidden aspect-[4/3]">
+            <img src="assets/img/innova/hero.jpeg" alt="Projet Innova" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            <div class="absolute top-4 left-4">
+              <span class="font-display text-[10px] tracking-widest uppercase bg-gold-500 text-teal-950 px-3 py-1">Résidentiels</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-display text-xl text-white mb-2 group-hover:text-gold-500 transition-colors">Projet Innova</h3>
+            <p class="font-light text-sm text-white/50 leading-relaxed mb-4">250 condos spacieux dans un immeuble converti du quartier Ahuntsic — de grands espaces à un coût abordable.</p>
+            <span class="font-display text-xs tracking-widest text-gold-500 group-hover:text-gold-300 transition-colors">Découvrir →</span>
+          </div>
+        </a>
+      </div>
     </div>
   </section>
 
   <!-- ABOUT -->
-  <section class="section section--light" id="apropos">
-    <div class="about__grid">
-      <div class="about__img">
-        <img src="assets/img/portrait/bunkorn-yun.jpg" alt="Bunkorn Yun, président de Développement Key Plus Inc.">
-      </div>
-      <div class="about__text">
-        <h2>Un promoteur immobilier de choix</h2>
-        <p>Bunkorn Yun, entrepreneur montréalais bien connu, a fondé Développement Key Plus inc. afin de créer et promouvoir des projets immobiliers de choix dans la grande région métropolitaine de Montréal.</p>
-        <p>La vaste expérience de M. Yun dans les projets immobiliers fait de lui un partenaire de choix pour des projets de construction résidentiels et commerciaux. L'implication de Bunkorn Yun dans le monde des affaires montréalais est fidèle à ses valeurs : persévérance, équilibre et générosité.</p>
-        <p>À travers les projets immobiliers de Développement Key Plus, dont il est président, il propose de revitaliser le milieu urbain des secteurs Papineau/Sauvé, Cavendish/Sherbrooke, le quartier Ahuntsic et plusieurs autres secteurs de l'Île de Montréal.</p>
+  <section id="apropos" class="py-24 px-4 sm:px-6 lg:px-8 bg-white/[0.02]">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div class="relative">
+          <div class="absolute -inset-4 bg-gradient-to-br from-gold-500/10 to-teal-700/10 blur-2xl"></div>
+          <img src="assets/img/portrait/bunkorn-yun.jpg" alt="Bunkorn Yun, président de Développement Key Plus Inc." class="relative w-full max-w-md mx-auto shadow-2xl" loading="lazy">
+        </div>
+        <div>
+          <p class="font-display text-gold-500 text-xs tracking-[0.3em] uppercase mb-3">À propos</p>
+          <h2 class="font-display text-3xl sm:text-4xl text-white mb-6">Un promoteur immobilier de choix</h2>
+          <div class="space-y-4 font-light text-white/70 leading-relaxed">
+            <p>Bunkorn Yun, entrepreneur montréalais bien connu, a fondé Développement Key Plus inc. afin de créer et promouvoir des projets immobiliers de choix dans la grande région métropolitaine de Montréal.</p>
+            <p>La vaste expérience de M. Yun dans les projets immobiliers fait de lui un partenaire de choix pour des projets de construction résidentiels et commerciaux. L'implication de Bunkorn Yun dans le monde des affaires montréalais est fidèle à ses valeurs : persévérance, équilibre et générosité.</p>
+            <p>À travers les projets immobiliers de Développement Key Plus, dont il est président, il propose de revitaliser le milieu urbain des secteurs Papineau/Sauvé, Cavendish/Sherbrooke, le quartier Ahuntsic et plusieurs autres secteurs de l'Île de Montréal.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="cta" id="contact">
-    <h2>Planifiez une visite</h2>
-    <p>Contactez-nous pour en savoir plus sur nos projets ou pour planifier une visite d'un appartement-témoin.</p>
-    <a href="tel:5147220088" class="cta__btn">(514) 722-0088</a>
+  <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="font-display text-gold-500 text-xs tracking-[0.3em] uppercase mb-3">Contact</p>
+      <h2 class="font-display text-3xl sm:text-4xl text-white mb-4">Planifiez une visite</h2>
+      <p class="font-light text-white/60 mb-8">Contactez-nous pour en savoir plus sur nos projets ou pour planifier une visite d'un appartement-témoin.</p>
+      <a href="tel:5147220088" class="inline-block font-display text-sm tracking-widest bg-gold-500 text-teal-950 px-10 py-4 hover:bg-gold-400 transition-colors">(514) 722-0088</a>
+      <p class="font-light text-sm text-white/40 mt-6">2672 rue Jarry est, Montréal, QC H1Z 2C7</p>
+    </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer__inner">
-      <div class="footer__copy">
-        <p>© 2026 Développement Key Plus Inc. — Tous droits réservés</p>
-        <p>2672 rue Jarry est, Montréal, QC H1Z 2C7 | (514) 722-0088</p>
+  <footer class="border-t border-white/5 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="text-center md:text-left">
+        <p class="font-display text-xs tracking-widest text-white/30">&copy; 2026 Développement Key Plus Inc. — Tous droits réservés</p>
+        <p class="font-light text-xs text-white/20 mt-1">2672 rue Jarry est, Montréal, QC H1Z 2C7 | (514) 722-0088</p>
       </div>
-      <div class="footer__links">
-        <a href="/">Accueil</a>
-        <a href="#projets">Projets</a>
-        <a href="#apropos">À propos</a>
-        <a href="#contact">Contact</a>
+      <div class="flex gap-8">
+        <a href="/" class="font-light text-xs text-white/30 hover:text-white/60 transition-colors">Accueil</a>
+        <a href="#projets" class="font-light text-xs text-white/30 hover:text-white/60 transition-colors">Projets</a>
+        <a href="#apropos" class="font-light text-xs text-white/30 hover:text-white/60 transition-colors">À propos</a>
+        <a href="#contact" class="font-light text-xs text-white/30 hover:text-white/60 transition-colors">Contact</a>
       </div>
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-label="Image agrandie">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+    // Hero slideshow
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.hero-dot');
+    let current = 0;
+    function showSlide(i) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('bg-white');
+      dots[current].classList.add('bg-white/40');
+      current = i;
+      slides[current].classList.add('active');
+      dots[current].classList.remove('bg-white/40');
+      dots[current].classList.add('bg-white');
+    }
+    dots.forEach((dot, i) => dot.addEventListener('click', () => showSlide(i)));
+    setInterval(() => showSlide((current + 1) % slides.length), 6000);
+
+    // Lightbox
+    document.querySelectorAll('.gallery-item').forEach(img => {
+      img.addEventListener('click', () => {
+        document.getElementById('lightbox-img').src = img.src;
+        document.getElementById('lightbox-img').alt = img.alt;
+        document.getElementById('lightbox').classList.add('open');
+      });
+    });
+    document.getElementById('lightbox').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) e.currentTarget.classList.remove('open');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
+    });
+  </script>
 </body>
 </html>

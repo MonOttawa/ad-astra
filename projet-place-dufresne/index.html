@@ -3,98 +3,189 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Place Dufresne | Condos locatifs | Developpement Key Plus</title>
-  <meta name="description" content="Place Dufresne - condos locatifs modernes a Montreal. Pres du metro Frontenac, electromenagers inclus, terrasse sur le toit.">
+  <title>Place Dufresne | Condos locatifs Montréal | Bunkorn Yun</title>
+  <meta name="description" content="Place Dufresne — condos locatifs modernes à Montréal. Près du métro Frontenac, électroménagers inclus, terrasse sur le toit.">
   <link rel="canonical" href="https://bunkornyun.com/projet-place-dufresne/">
-  <meta property="og:title" content="Place Dufresne | Developpement Key Plus">
-  <meta property="og:description" content="Condos locatifs modernes a Montreal. Pres du metro Frontenac.">
+  <meta property="og:title" content="Place Dufresne | Bunkorn Yun">
+  <meta property="og:description" content="Condos locatifs modernes à Montréal. Près du métro Frontenac.">
   <meta property="og:url" content="https://bunkornyun.com/projet-place-dufresne/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_CA">
   <meta property="og:image" content="https://bunkornyun.com/assets/img/place-dufresne/hero.jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            teal: { 950: '#0a1f1f', 900: '#0F766E', 800: '#115E59', 700: '#0F766E', 600: '#0D9488', 500: '#14B8A6' },
+            gold: { 500: '#C8A45C', 400: '#D4B76E', 300: '#E0CA80' },
+          },
+          fontFamily: {
+            display: ['Cinzel', 'serif'],
+            body: ['Josefin Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Josefin Sans', sans-serif; }
+    .font-display { font-family: 'Cinzel', serif; }
+    .mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+    .mobile-menu.open { max-height: 300px; }
+    .lightbox { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; cursor: pointer; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 4px; }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
 </head>
-<body>
-  <nav class="nav">
-    <a href="../" class="nav__logo">Developpement <span>Key Plus</span></a>
-    <ul class="nav__links">
-      <li><a href="../#projets">Projets</a></li>
-      <li><a href="../#apropos">A propos</a></li>
-      <li><a href="../#contact">Contact</a></li>
-    </ul>
-    <button class="nav__toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+<body class="bg-teal-950 text-white antialiased">
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-teal-950/90 backdrop-blur-md border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="../" class="font-display text-lg tracking-widest text-gold-500 hover:text-gold-300 transition-colors">BUNKORN YUN</a>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="../#projets" class="text-sm font-light tracking-wide text-white/70 hover:text-white transition-colors">Projets</a>
+          <a href="../#apropos" class="text-sm font-light tracking-wide text-white/70 hover:text-white transition-colors">À propos</a>
+          <a href="../#contact" class="text-sm font-light tracking-wide text-white/70 hover:text-white transition-colors">Contact</a>
+          <a href="tel:5147220088" class="text-sm font-semibold tracking-wide bg-gold-500 text-teal-950 px-5 py-2 hover:bg-gold-400 transition-colors">(514) 722-0088</a>
+        </div>
+        <button id="menu-toggle" class="md:hidden text-white/70 hover:text-white cursor-pointer" aria-label="Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+      <div id="mobile-menu" class="mobile-menu md:hidden">
+        <div class="py-4 space-y-3 border-t border-white/5">
+          <a href="../#projets" class="block text-sm font-light tracking-wide text-white/70">Projets</a>
+          <a href="../#apropos" class="block text-sm font-light tracking-wide text-white/70">À propos</a>
+          <a href="../#contact" class="block text-sm font-light tracking-wide text-white/70">Contact</a>
+        </div>
+      </div>
+    </div>
   </nav>
 
-  <section class="page-hero">
-    <img src="../assets/img/place-dufresne/hero.jpeg" alt="Place Dufresne">
-    <div class="page-hero__content">
-      <h1 class="page-hero__title">Place Dufresne</h1>
-      <p class="page-hero__sub">Condos locatifs a Montreal</p>
+  <!-- HERO -->
+  <section class="relative h-[70vh] min-h-[400px] overflow-hidden">
+    <img src="../assets/img/place-dufresne/hero.jpeg" alt="Place Dufresne" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-teal-950 via-teal-950/50 to-transparent"></div>
+    <div class="absolute inset-0 flex flex-col items-center justify-end pb-16 text-center px-4">
+      <p class="font-display text-gold-500 text-xs tracking-[0.3em] uppercase mb-2">Développement Key Plus</p>
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl text-white">Place Dufresne</h1>
+      <p class="font-light text-lg text-white/70 mt-3 tracking-wide">Condos locatifs à Montréal</p>
     </div>
   </section>
 
-  <section class="project-detail">
-    <div class="project-detail__intro">
-      <p>Les nouveaux condos locatifs Place Dufresne, situes a quelques minutes du metro Frontenac, proposent plusieurs epiceries et restaurants a quelques minutes de marche.</p>
+  <!-- INTRO -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+      <p class="font-light text-lg sm:text-xl text-white/80 leading-relaxed text-center">Les nouveaux condos locatifs Place Dufresne, situés à quelques minutes du métro Frontenac, proposent plusieurs épiceries et restaurants à quelques minutes de marche.</p>
     </div>
+  </section>
 
-    <div class="project-detail__grid">
-      <div class="project-detail__img">
-        <img src="../assets/img/place-dufresne/logement-neuf.jpg" alt="Place Dufresne logement neuf">
-      </div>
-      <div class="project-detail__text">
-        <h3>Un equilibre entre tranquillite et vie urbaine</h3>
-        <p>Avec differents modeles offerts, cet immeuble conviendra parfaitement aux etudiants, celibataires et aux couples souhaitant profiter d un espace de vie equilibre entre tranquillite et vie urbaine.</p>
-        <p>Situe a 10 minutes du centre-ville, les electromenagers inclus, la terrasse sur le toit et cet immeuble en beton insonorise vous fera sentir immediatement comme chez vous.</p>
-        <p>Pour plus de renseignements sur la location, consultez <a href="https://placedufresne.com">placedufresne.com</a></p>
-      </div>
-    </div>
-
-    <div class="section__header">
-      <h2>Caracteristiques</h2>
-    </div>
-    <div class="features">
-      <div class="feature"><p>Immeuble en beton insonorise</p></div>
-      <div class="feature"><p>Electromenagers inclus</p></div>
-      <div class="feature"><p>Terrasse sur le toit</p></div>
-      <div class="feature"><p>Quelques minutes du metro Frontenac</p></div>
-      <div class="feature"><p>10 minutes du centre-ville</p></div>
-      <div class="feature"><p>Epiceries et restaurants a proximite</p></div>
-    </div>
-
-    <div class="gallery">
-      <div class="section__header"><h2>Galerie</h2></div>
-      <div class="gallery__grid">
-        <div class="gallery__item"><img src="../assets/img/place-dufresne/hero.jpeg" alt="Place Dufresne exterieur"></div>
-        <div class="gallery__item"><img src="../assets/img/place-dufresne/logement-neuf.jpg" alt="Place Dufresne logement neuf"></div>
-        <div class="gallery__item"><img src="../assets/img/place-dufresne/appartement.jpg" alt="Place Dufresne appartement"></div>
+  <!-- CONTENT BLOCKS -->
+  <section class="pb-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-8 lg:gap-16 items-center">
+        <div class="overflow-hidden">
+          <img src="../assets/img/place-dufresne/logement-neuf.jpg" alt="Place Dufresne — logement neuf" class="w-full hover:scale-105 transition-transform duration-500" loading="lazy">
+        </div>
+        <div>
+          <h3 class="font-display text-2xl text-white mb-4">Un équilibre entre tranquillité et vie urbaine</h3>
+          <div class="space-y-4 font-light text-white/70 leading-relaxed">
+            <p>Avec différents modèles offerts, cet immeuble conviendra parfaitement aux étudiants, célibataires et aux couples souhaitant profiter d'un espace de vie équilibré entre tranquillité et vie urbaine.</p>
+            <p>Situé à 10 minutes du centre-ville, les électroménagers inclus, la terrasse sur le toit et cet immeuble en béton insonorisé vous fera sentir immédiatement comme chez vous.</p>
+            <p>Pour plus de renseignements sur la location, consultez <a href="https://placedufresne.com" class="text-gold-500 hover:text-gold-300 underline underline-offset-4 transition-colors">placedufresne.com</a></p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="cta">
-    <h2>Votre prochain chez-vous</h2>
-    <p>Pour plus de renseignements sur la location, consultez placedufresne.com ou contactez-nous.</p>
-    <a href="tel:5147220088" class="cta__btn">(514) 722-0088</a>
+  <!-- FEATURES -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-white/[0.02]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <p class="font-display text-gold-500 text-xs tracking-[0.3em] uppercase mb-3">Détails</p>
+        <h2 class="font-display text-3xl text-white">Caractéristiques</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="border border-white/5 p-6 hover:border-gold-500/30 transition-colors"><p class="font-light text-white/70">Immeuble en béton insonorisé</p></div>
+        <div class="border border-white/5 p-6 hover:border-gold-500/30 transition-colors"><p class="font-light text-white/70">Électroménagers inclus</p></div>
+        <div class="border border-white/5 p-6 hover:border-gold-500/30 transition-colors"><p class="font-light text-white/70">Terrasse sur le toit</p></div>
+        <div class="border border-white/5 p-6 hover:border-gold-500/30 transition-colors"><p class="font-light text-white/70">Quelques minutes du métro Frontenac</p></div>
+        <div class="border border-white/5 p-6 hover:border-gold-500/30 transition-colors"><p class="font-light text-white/70">10 minutes du centre-ville</p></div>
+        <div class="border border-white/5 p-6 hover:border-gold-500/30 transition-colors"><p class="font-light text-white/70">Épiceries et restaurants à proximité</p></div>
+      </div>
+    </div>
   </section>
 
-  <footer class="footer">
-    <div class="footer__inner">
-      <div class="footer__copy">
-        <p>2026 Developpement Key Plus Inc. Tous droits reserves</p>
-        <p>2672 rue Jarry est, Montreal, QC H1Z 2C7 | (514) 722-0088</p>
+  <!-- GALLERY -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <p class="font-display text-gold-500 text-xs tracking-[0.3em] uppercase mb-3">Visuels</p>
+        <h2 class="font-display text-3xl text-white">Galerie</h2>
       </div>
-      <div class="footer__links">
-        <a href="../">Accueil</a>
-        <a href="../#projets">Projets</a>
-        <a href="../#contact">Contact</a>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+        <img src="../assets/img/place-dufresne/hero.jpeg" alt="Place Dufresne extérieur" class="gallery-item w-full cursor-pointer hover:opacity-80 transition-opacity" loading="lazy">
+        <img src="../assets/img/place-dufresne/logement-neuf.jpg" alt="Place Dufresne logement neuf" class="gallery-item w-full cursor-pointer hover:opacity-80 transition-opacity" loading="lazy">
+        <img src="../assets/img/place-dufresne/appartement.jpg" alt="Place Dufresne appartement" class="gallery-item w-full cursor-pointer hover:opacity-80 transition-opacity" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-white/[0.02]">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="font-display text-gold-500 text-xs tracking-[0.3em] uppercase mb-3">Contact</p>
+      <h2 class="font-display text-3xl text-white mb-4">Votre prochain chez-vous</h2>
+      <p class="font-light text-white/60 mb-8">Pour plus de renseignements sur la location, consultez <a href="https://placedufresne.com" class="text-gold-500 hover:text-gold-300 underline underline-offset-4 transition-colors">placedufresne.com</a> ou contactez-nous.</p>
+      <a href="tel:5147220088" class="inline-block font-display text-sm tracking-widest bg-gold-500 text-teal-950 px-10 py-4 hover:bg-gold-400 transition-colors">(514) 722-0088</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="text-center md:text-left">
+        <p class="font-display text-xs tracking-widest text-white/30">&copy; 2026 Développement Key Plus Inc. — Tous droits réservés</p>
+        <p class="font-light text-xs text-white/20 mt-1">2672 rue Jarry est, Montréal, QC H1Z 2C7 | (514) 722-0088</p>
+      </div>
+      <div class="flex gap-8">
+        <a href="../" class="font-light text-xs text-white/30 hover:text-white/60 transition-colors">Accueil</a>
+        <a href="../#projets" class="font-light text-xs text-white/30 hover:text-white/60 transition-colors">Projets</a>
+        <a href="../#contact" class="font-light text-xs text-white/30 hover:text-white/60 transition-colors">Contact</a>
       </div>
     </div>
   </footer>
 
-  <script src="../assets/js/main.js"></script>
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-label="Image agrandie">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    document.querySelectorAll('.gallery-item').forEach(img => {
+      img.addEventListener('click', () => {
+        document.getElementById('lightbox-img').src = img.src;
+        document.getElementById('lightbox-img').alt = img.alt;
+        document.getElementById('lightbox').classList.add('open');
+      });
+    });
+    document.getElementById('lightbox').addEventListener('click', (e) => { if (e.target === e.currentTarget) e.currentTarget.classList.remove('open'); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open'); });
+  </script>
 </body>
 </html>
